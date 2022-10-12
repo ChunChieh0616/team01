@@ -22,6 +22,7 @@ class CreateLeavesTable extends Migration
             $table->string('reason',191)->comment('外宿原因')->nullable(false);
             $table->boolean('check')->comment('樓長審核')->nullable(false);
             $table->boolean('housemaster_check')->comment('宿舍輔導員審核')->nullable(false);
+            // 底下是建立與修改時間
             $table->timestamps();
         });
     }
