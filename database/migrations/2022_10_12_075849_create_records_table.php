@@ -17,9 +17,19 @@ class CreateRecordsTable extends Migration
             $table->id()->comment('編號')->nullable(false);
             $table->string('school_year',191)->comment('學年')->nullable(false);
             $table->string('semester',191)->comment('學期')->nullable(false);
-            $table->integer('sid')->comment('學生編號(外部鍵)')->nullable(false)->unsigned();
-            $table->integer('bid')->comment('床位(外部鍵)')->nullable(false)->unsigned();
+
+            $table->foreignId('sid')->comment('學生編號(外部鍵)')->nullable(false)->unsigned();
+            $table->foreign('sid')
+                ->references('id')->on('students')
+                ->onDelete('cascade');
+
+            $table->foreignId('bid')->comment('床位(外部鍵)')->nullable(false)->unsigned();
+            $table->foreign('bid')
+                ->references('id')->on('beds')
+                ->onDelete('cascade');
+
             $table->timestamps();
+
         });
     }
 

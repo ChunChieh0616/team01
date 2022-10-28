@@ -15,8 +15,12 @@ class CreateLatesTable extends Migration
     {
         Schema::create('lates', function (Blueprint $table) {
             $table->id()->comment('編號')->nullable(false);
-            $table->integer('sid')->comment('學生編號(外部鍵)')->nullable(false);
-            $table->integer('did')->comment('宿別(外部鍵)')->nullable(false);
+
+            $table->foreignId('sbid')->comment('學生編號(外部鍵)')->nullable(false)->unsigned();
+            $table->foreign('sbid')
+                ->references('id')->on('records')
+                ->onDelete('cascade');
+
             $table->date('start')->comment('長期晚歸日起')->nullable(false);
             $table->date('end')->comment('長期晚歸日訖')->nullable(false);
             $table->string('reason',191)->comment('長期晚歸原因')->nullable(false);

@@ -24,9 +24,9 @@ class BedTableSeeder extends Seeder
         $Bedcode .= $number[rand(0, $numberLength - 1)];
         return $Bedcode;
     }
-    public function generateRandomBid() {
-        $Bid = ['2','4','5','1','3'];
-        return $Bid[rand(0, count($Bid)-1)];
+    public function generateRandomDid() {
+        $did = ['2','4','5','1','3'];
+        return $did[rand(0, count($did)-1)];
 
     }
     public function generateRandomRoomtype() {
@@ -38,12 +38,12 @@ class BedTableSeeder extends Seeder
     {
         for ($i=0; $i<10; $i++){
         $bedcode = $this->generateRandomBedcode();
-        $bid = $this->generateRandomBid();
+        $did = $this->generateRandomDid();
         $roomtype = $this->generateRandomRoomtype();
         $random_datetime = Carbon::now()->subMinutes(rand(1, 55));
         DB::table('beds')->insert([
             'bedcode' => $bedcode,
-            'bid' => $bid,
+            'did' => $did,
             'roomtype' => $roomtype,
             'created_at' => $random_datetime,
             'updated_at' => $random_datetime
